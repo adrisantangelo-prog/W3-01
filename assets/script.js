@@ -173,7 +173,7 @@ console.log(nomiCompleti);
 
 /* SCRIVI QUI LA TUA RISPOSTA */
 
-const UtentiPlus = utenti.map(u => ({
+const UtentiPlus = utenti.map(u => ({              // qui è importante la parentesi tonda perché raggruppa e poi graffa
 	...u, 
 	descrizione: `Utente: ${u.nome} ${u.cognome}, ${u.città}`
 }));
@@ -222,8 +222,8 @@ const sommaEta = utenti.reduce((acc, u) => acc + u.eta, 0);
 const etaMedia = sommaEta / utenti.length;
 console.log('Età Media:', Math.round(etaMedia)); //Math.floor serve per eliminare i numeri decimali mentre Math.round li arrotonda
 
-const utentiAttiviCont = utenti.reduce((acc, u) => acc + u.attivo, 0);
-console.log('Numero utenti attivi:', utentiAttiviCont);
+const utentiAttiviCont = utenti.reduce((acc, u) => acc + u.attivo, 0);  // funzionano finche sono boolean o num
+console.log('Numero utenti attivi:', utentiAttiviCont);                 // se è una stringa devi usare if 
 
 /* ESERCIZIO 14 — sort
    a) Ordina gli utenti per eta crescente. Stampa l'array di nomi nell'ordine.
@@ -237,14 +237,16 @@ const nomiPerEta = utentiPerEta.map(u => u.nome);
 console.log('Nomi per età crescente:', nomiPerEta);
 
 /*const utentiAlfa = [...utenti].sort((a, b) => a.nome.localeCompare(b.nome)); 
-localeCompare: confronta due stringhe in base all'ordine alfabetico. */
+localeCompare: confronta due stringhe in base all'ordine alfabetico e si usa questo perchè se scrivi 
+solo .sort() non te lo mette in ordine (utilizza il linguaggio locale quindi puo dar noia per lingue non occidentali) 
+ */
 	                          
-const utentiAlfa = [...utenti].sort((a, b) => {                        
+const utentiAlfa = [...utenti].sort((a, b) => {          // arrey estrai un oggetto ecco perché ti serve un if              
 	if (a.nome < b.nome) return -1;                              
-	if (a.nome > b.nome) return 1;
-	return 0;
+	if (a.nome > b.nome) return 1;         // retrun True 
+	return 0;                              // puo non servire 
 });
-const nomiAlfa = utentiAlfa.map(u => u.nome);
+const nomiAlfa = utentiAlfa.map(u => u.nome);          // potevi ridurlo 
 console.log('Nomi in ordine alfabetico:', nomiAlfa);
 
 /* ESERCIZIO 15 — Chaining
