@@ -236,13 +236,14 @@ const utentiPerEta = [...utenti].sort((a, b) => a.eta - b.eta);
 const nomiPerEta = utentiPerEta.map(u => u.nome);
 console.log('Nomi per età crescente:', nomiPerEta);
 
-//const utentiAlfa = [...utenti].sort((a, b) => a.nome.localeCompare(b.nome));  <------ Funzionanno entrambe
-/* const utentiAlfa = [...utenti].sort((a, b) => {                            localeCompare: 
-	if (a.nome < b.nome) return -1;                              confronta due stringhe in base all'ordine alfabetico. 
+/*const utentiAlfa = [...utenti].sort((a, b) => a.nome.localeCompare(b.nome)); 
+localeCompare: confronta due stringhe in base all'ordine alfabetico. */
+	                          
+const utentiAlfa = [...utenti].sort((a, b) => {                        
+	if (a.nome < b.nome) return -1;                              
 	if (a.nome > b.nome) return 1;
 	return 0;
-} */
-const utentiAlfa = [...utenti].sort((a, b) => a.nome - b.nome);
+});
 const nomiAlfa = utentiAlfa.map(u => u.nome);
 console.log('Nomi in ordine alfabetico:', nomiAlfa);
 
@@ -259,7 +260,8 @@ console.log('Nomi in ordine alfabetico:', nomiAlfa);
 const catena = utenti
 .filter(u => u.attivo)
 .map(u => `${u.nome} ${u.cognome}`)
-.sort((a, b) => a.localeCompare(b));
+.sort();
+//.sort((a, b) => a.localeCompare(b)) Funziona 
 //.sort((a, b) => a.nome - b.nome); non funziona
 
 console.log('Risultato chaining:',catena);
